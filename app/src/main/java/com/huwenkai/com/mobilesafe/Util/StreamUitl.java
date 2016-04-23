@@ -5,9 +5,15 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
+ * Stream 的工具类
  * Created by huwenkai on 2016/4/22.
+ *
  */
 public class StreamUitl {
+    /**将流转换成字符
+     * @param inputStream 转换的流
+     * @return 字符串
+     */
     public static String StreamToString(InputStream inputStream) {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         byte[] buff = new byte[1024];
