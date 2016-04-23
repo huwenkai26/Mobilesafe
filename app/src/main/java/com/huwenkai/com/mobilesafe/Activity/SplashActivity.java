@@ -147,12 +147,7 @@ public class SplashActivity extends Activity {
 
     }
 
-    private void enterHome() {
-        Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
-        startActivity(intent);
 
-        finish();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -162,6 +157,16 @@ public class SplashActivity extends Activity {
         initUI();
         initData();
 
+    }
+
+    /**
+     * 进入主界面
+     */
+    private void enterHome() {
+        Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
+        startActivity(intent);
+
+        finish();
     }
 
     @Override
