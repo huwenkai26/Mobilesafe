@@ -150,6 +150,7 @@ public class SplashActivity extends Activity {
     private void enterHome() {
         Intent intent = new Intent(SplashActivity.this, HomeActivity.class);
         startActivity(intent);
+
         finish();
     }
 
