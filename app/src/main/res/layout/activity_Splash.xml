@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rl_splash"
     android:background="@drawable/launcher_bg"
     tools:context=".Activity.SplashActivity">
     <!--显示版本名称 shadow添加影印-->

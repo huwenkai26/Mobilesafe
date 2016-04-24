@@ -19,6 +19,9 @@
         <activity android:name=".Activity.HomeActivity">
 
         </activity>
+        <activity android:name=".Activity.SettingsActivity">
+
+        </activity>
     </application>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.INTERNET"/>

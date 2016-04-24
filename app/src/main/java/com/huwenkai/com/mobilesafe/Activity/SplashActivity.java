@@ -11,6 +11,9 @@ import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
+import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.huwenkai.com.mobilesafe.R;
@@ -20,7 +23,6 @@ import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -71,6 +73,7 @@ public class SplashActivity extends Activity {
     };
     private String mDescription;
     private String mDownloadUrl;
+    private View rl_splash;
 
     /**
      * 此方法用的弹出对话框提示用户版本更新
@@ -156,7 +159,17 @@ public class SplashActivity extends Activity {
 
         initUI();
         initData();
+        initAnimation();
 
+    }
+
+    /**
+     * 启动页面淡入淡出动画
+     */
+    private void initAnimation() {
+        AlphaAnimation alphaAnimation = new AlphaAnimation(0,1);
+        alphaAnimation.setDuration(3000);
+        rl_splash.startAnimation(alphaAnimation);
     }
 
     /**
@@ -281,7 +294,7 @@ public class SplashActivity extends Activity {
      */
     private void initUI() {
         version_name = (TextView) findViewById(R.id.tv_version_name);
-
+        rl_splash = findViewById(R.id.rl_splash);
     }
 
     /**

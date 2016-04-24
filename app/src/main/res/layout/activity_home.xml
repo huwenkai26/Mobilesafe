@@ -1,19 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:weightSum="1">
-<TextView
 
-    android:layout_gravity="center"
-    android:text="主界面"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" />
+    <TextView
+        style="@style/TitleStyle"
+        android:text="功能列表" />
 
-    <RadioButton
-        android:layout_width="239dp"
-        android:layout_height="170dp"
-        android:text="New RadioButton"
-        android:id="@+id/radioButton"
-        android:layout_weight="0.38" />
+    <com.huwenkai.com.mobilesafe.View.FocusTextview
+
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ellipsize="marquee"
+        android:marqueeRepeatLimit="marquee_forever"
+        android:padding="5dp"
+        android:singleLine="true"
+        android:text="主界面主界面主界面主界面主界面主界面主界面主界面主界面" />
+    <!-- android:verticalSpacing="16dp"设置条目间的垂直间距-->
+    <GridView
+        android:id="@+id/gv_home"
+        android:numColumns="3"
+        android:verticalSpacing="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></GridView>
+
 </LinearLayout>
