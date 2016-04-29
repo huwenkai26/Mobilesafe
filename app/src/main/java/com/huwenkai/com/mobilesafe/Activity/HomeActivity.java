@@ -1,20 +1,34 @@
 package com.huwenkai.com.mobilesafe.Activity;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.huwenkai.com.mobilesafe.R;
+import com.huwenkai.com.mobilesafe.Util.ContactsValues;
+import com.huwenkai.com.mobilesafe.Util.MessageDigestUtils;
+import com.huwenkai.com.mobilesafe.Util.SpUtils;
+import com.huwenkai.com.mobilesafe.Util.ToastUtils;
+
+import org.w3c.dom.Text;
+
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * 程序的主界面
@@ -45,12 +59,110 @@ public class HomeActivity extends Activity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0:
+                        showdialog();
+
                         break;
                     case 8:
                         Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);
                         startActivity(intent);
                         break;
                 }
+            }
+        });
+    }
+
+    private void showdialog() {
+        //读取本地文件查看是否有保存密码
+        final String pwd = SpUtils.getString(ContactsValues.MOBILE_SAFE_PWD, "", this);
+        //判断是密码是否为空
+        if (TextUtils.isEmpty(pwd)){
+            //弹出设置密码对话框
+            setMobliesafePwd();
+
+        }else {
+            //弹出确认密码的对话框
+            confirmPwd();
+        }
+
+    }
+
+    private void confirmPwd() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog alertDialog = builder.create();
+        final View view = View.inflate(this, R.layout.confrim_pwd, null);
+        alertDialog.setView(view);
+        alertDialog.show();
+        Button bt_yes = (Button) view.findViewById(R.id.bt_yes);
+        Button bt_no = (Button) view.findViewById(R.id.bt_no);
+        bt_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        bt_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                TextView confirm_pwd = (TextView) view.findViewById(R.id.confirm_mobile_safe_pwd);
+                if(!TextUtils.isEmpty(confirm_pwd.getText().toString())){
+                    String local_pwd = SpUtils.getString(ContactsValues.MOBILE_SAFE_PWD, "", getApplicationContext());
+                    String encryption_pwd = MessageDigestUtils.StringToMD5(confirm_pwd.getText().toString(),"MD5");
+                    if(TextUtils.equals(local_pwd,encryption_pwd)){
+//                        Intent intent = new Intent(HomeActivity.this,Testactivity.class);
+                        Intent intent = new Intent(HomeActivity.this,SetupvoerActivity.class);
+                        startActivity(intent);
+                        alertDialog.dismiss();
+
+                    }else{
+                        ToastUtils.show(getApplication(),"密码错误");
+                    }
+
+                }else{
+                    ToastUtils.show(getApplication(),"密码不能为空");
+                }
+
+            }
+        });
+    }
+
+    private void setMobliesafePwd() {
+        //弹出初始化密码的对话框
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        final AlertDialog alertDialog = builder.create();
+        final View view = View.inflate(this, R.layout.safe_dialog_pwd, null);
+        alertDialog.setView(view);
+        alertDialog.show();
+        Button bt_yes = (Button) view.findViewById(R.id.bt_yes);
+        Button bt_no = (Button) view.findViewById(R.id.bt_no);
+        bt_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertDialog.dismiss();
+            }
+        });
+        bt_yes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView mobile_safe_pwd = (TextView) view.findViewById(R.id.mobile_safe_pwd);
+                TextView confirm_pwd = (TextView) view.findViewById(R.id.confirm_mobile_safe_pwd);
+                if(!TextUtils.isEmpty(mobile_safe_pwd.getText().toString())&&!TextUtils.isEmpty(confirm_pwd.getText().toString())){
+                    if(TextUtils.equals(mobile_safe_pwd.getText().toString(),confirm_pwd.getText().toString())){
+//                        Intent intent = new Intent(HomeActivity.this,Testactivity.class);
+                        Intent intent = new Intent(HomeActivity.this,SetupvoerActivity.class);
+                        startActivity(intent);
+                        alertDialog.dismiss();
+                        String string_pwd = confirm_pwd.getText().toString();
+
+                        SpUtils.putString(ContactsValues.MOBILE_SAFE_PWD, MessageDigestUtils.StringToMD5(string_pwd,"MD5"),getApplicationContext());
+                    }else{
+                        ToastUtils.show(getApplication(),"密码不唯一");
+                    }
+
+                }else{
+                    ToastUtils.show(getApplication(),"密码不能为空");
+                }
+
             }
         });
     }

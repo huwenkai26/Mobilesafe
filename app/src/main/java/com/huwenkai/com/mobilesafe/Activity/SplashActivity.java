@@ -13,16 +13,18 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.huwenkai.com.mobilesafe.R;
+import com.huwenkai.com.mobilesafe.Util.ContactsValues;
+import com.huwenkai.com.mobilesafe.Util.SpUtils;
 import com.huwenkai.com.mobilesafe.Util.StreamUitl;
 import com.huwenkai.com.mobilesafe.Util.ToastUtils;
 import com.lidroid.xutils.HttpUtils;
 import com.lidroid.xutils.exception.HttpException;
 import com.lidroid.xutils.http.ResponseInfo;
 import com.lidroid.xutils.http.callback.RequestCallBack;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -159,6 +161,8 @@ public class SplashActivity extends Activity {
 
         initUI();
         initData();
+
+
         initAnimation();
 
     }
@@ -202,8 +206,11 @@ public class SplashActivity extends Activity {
         *   最新版APK
         *   还有新版本特性
          */
-        relativeVersion();
-
+        if(SpUtils.getBoolean(ContactsValues.CHEACK_UPDATA,false,getApplicationContext())) {
+            relativeVersion();
+        }else{
+            mHandler.sendEmptyMessageDelayed(ENTER_HOME,2000);
+        }
     }
 
     /**

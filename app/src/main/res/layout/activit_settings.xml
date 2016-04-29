@@ -7,15 +7,15 @@
      android:text="设置中心"
         />
     <com.huwenkai.com.mobilesafe.View.SetingItemView
-        android:layout_width="wrap_content"
+        xmlns:mobilesafe="http://schemas.android.com/apk/res/com.huwenkai.com.mobilesafe"
+        android:id="@+id/siv_updata"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        mobilesafe:destitle="自动更新设置"
+        mobilesafe:desoff="自动更新已开启"
+        mobilesafe:deson="自动更新已关闭">
 
     </com.huwenkai.com.mobilesafe.View.SetingItemView>
-    <com.huwenkai.com.mobilesafe.View.SetingItemView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        >
 
-    </com.huwenkai.com.mobilesafe.View.SetingItemView>
+
 </LinearLayout>

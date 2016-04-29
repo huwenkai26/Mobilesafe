@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.huwenkai.com.mobilesafe.Activity.Setup1Activity">
+
+    <TextView
+        style="@style/TitleStyle"
+
+        android:text="2,手机卡绑定" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="通过绑定sim卡："
+        android:textColor="#000"
+        android:textSize="15dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:text="下次重启手机发现sim卡变化发送报警短信"
+        android:textColor="#000"
+        android:textSize="15dp" />
+    <com.huwenkai.com.mobilesafe.View.SetingItemView
+        xmlns:mobilesafe="http://schemas.android.com/apk/res/com.huwenkai.com.mobilesafe"
+        android:id="@+id/siv_bound_sim"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        mobilesafe:destitle="点击绑定sim卡"
+        mobilesafe:desoff="sim卡以绑定"
+        mobilesafe:deson="sim卡未绑定">
+
+
+    </com.huwenkai.com.mobilesafe.View.SetingItemView>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:src="@android:drawable/presence_invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@android:drawable/presence_online"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@android:drawable/presence_invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:src="@android:drawable/presence_invisible"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+
+            android:src="@drawable/bind"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:id="@+id/bt_nextpage2"
+           style="@style/Nextpage" />
+        <Button
+            android:id="@+id/bt_prepage_2"
+            style="@style/Prepage" />
+    </RelativeLayout>
+
+
+
+</LinearLayout>
