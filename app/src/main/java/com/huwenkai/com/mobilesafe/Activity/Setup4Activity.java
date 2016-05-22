@@ -13,7 +13,7 @@ import com.huwenkai.com.mobilesafe.Util.LogUtils;
 import com.huwenkai.com.mobilesafe.Util.SpUtils;
 import com.huwenkai.com.mobilesafe.Util.ToastUtils;
 
-public class Setup4Activity extends AppCompatActivity {
+public class Setup4Activity extends SetupBaseActivity {
 
     private CheckBox cb_mobilesafe_flag;
 
@@ -22,6 +22,29 @@ public class Setup4Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup4);
         initUI();
+
+    }
+
+    @Override
+    protected void showPrePage() {
+        Intent intent = new Intent(Setup4Activity.this, Setup3Activity.class);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.anim.pre_in_anim,R.anim.pre_out_anim);
+    }
+
+    @Override
+    protected void showNextPage() {
+        if (cb_mobilesafe_flag.isChecked()) {
+            Intent intent = new Intent(Setup4Activity.this, SetupvoerActivity.class);
+            startActivity(intent);
+            finish();
+            SpUtils.putBoolean(ContactsValues.SET_OVER, true, getApplicationContext());
+            overridePendingTransition(R.anim.next_in_anim,R.anim.next_out_anim);
+        } else {
+            ToastUtils.show(getApplicationContext(), "请开启防盗保护");
+        }
+
 
     }
 

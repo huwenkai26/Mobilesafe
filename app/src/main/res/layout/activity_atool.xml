@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.huwenkai.com.mobilesafe.Activity.AToolActivity">
+
+    <TextView
+        style="@style/TitleStyle"
+        android:text="高级工具" />
+
+    <TextView
+        android:id="@+id/tv_query_phone_address"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="归属地查询"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:background="@drawable/slelector_tools_bg"
+        android:padding="7dp"
+        android:gravity="center"
+        android:drawableLeft="@android:drawable/stat_sys_warning" />
+    <TextView
+        android:id="@+id/tv_sms_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="短信备份"
+        android:textColor="#000"
+        android:textSize="18sp"
+        android:background="@drawable/slelector_tools_bg"
+        android:padding="7dp"
+        android:gravity="center"
+        android:drawableLeft="@android:drawable/stat_sys_warning" />
+</LinearLayout>

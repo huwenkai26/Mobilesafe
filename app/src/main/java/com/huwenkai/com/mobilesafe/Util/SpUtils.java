@@ -81,4 +81,33 @@ public class SpUtils {
         sp.edit().remove(key).commit();
 
     }
+    /**
+     * @param key     传入的key
+     * @param value   传入的值
+     * @param context 需要的上下文
+     */
+    public static void putInt(String key,int value, Context context) {
+
+        sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putInt(key, value);
+        edit.commit();
+
+    }
+
+    /**
+     * @param key      传入的key
+     * @param defvalue key不匹配得到的默认值
+     * @param context  传入的上下文
+     * @return 匹配key得到的值
+     */
+    public static int getInt(String key, int defvalue, Context context) {
+        if (sp == null) {
+            sp = context.getSharedPreferences("config", Context.MODE_PRIVATE);
+        }
+        int spString = sp.getInt(key, defvalue);
+        return spString;
+    }
+
 }

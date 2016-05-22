@@ -30,4 +30,18 @@ public class ContactsValues {
      * 判断手机是否开启防盗保护
      */
     public static final String OPENSAFE = "opensafe";
+    /**
+     *手机归属地风格的key
+     */
+    public static final String ADDRESS_STYLE = "address_style";
+
+    /**
+     * 记录来电归属地的位置
+     */
+    public static final String LOCALTIONX = "localtionx";
+    public static final String LOCALTIONY = "localtiony";
+    /**
+     * 是否显示系统进程的key
+     */
+    public static final String SHOW_SYSTEM = "SHOW_SYSTEM";
 }

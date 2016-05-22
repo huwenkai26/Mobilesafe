@@ -2,12 +2,9 @@ package com.huwenkai.com.mobilesafe.Activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,7 +13,6 @@ import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import com.huwenkai.com.mobilesafe.R;
@@ -24,11 +20,6 @@ import com.huwenkai.com.mobilesafe.Util.ContactsValues;
 import com.huwenkai.com.mobilesafe.Util.MessageDigestUtils;
 import com.huwenkai.com.mobilesafe.Util.SpUtils;
 import com.huwenkai.com.mobilesafe.Util.ToastUtils;
-
-import org.w3c.dom.Text;
-
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 /**
  * 程序的主界面
@@ -60,7 +51,19 @@ public class HomeActivity extends Activity {
                 switch (position){
                     case 0:
                         showdialog();
+                        break;
+                    case 1:
+                        startActivity(new Intent(getApplicationContext(),BlackNumberActivity.class));
+                        break;
+                    case 2:
+                        startActivity(new Intent(getApplicationContext(),AppManagerActivity.class));
+                        break;
+                    case 3:
+                        startActivity(new Intent(getApplicationContext(),ProcessActivity.class));
+                        break;
+                    case 7:
 
+                        startActivity(new Intent(getApplicationContext(),AToolActivity.class));
                         break;
                     case 8:
                         Intent intent = new Intent(getApplicationContext(),SettingsActivity.class);

@@ -13,7 +13,7 @@ package com.huwenkai.com.mobilesafe.Activity;
         import com.huwenkai.com.mobilesafe.Util.SpUtils;
         import com.huwenkai.com.mobilesafe.Util.ToastUtils;
 
-public class Setup3Activity extends AppCompatActivity {
+public class Setup3Activity extends SetupBaseActivity {
 
     private EditText ed_contact_number;
     private Button bt_select_contacts;
@@ -25,6 +25,30 @@ public class Setup3Activity extends AppCompatActivity {
         initUI();
 
     }
+
+    @Override
+    protected void showPrePage() {
+        Intent intent = new Intent(Setup3Activity.this, Setup2Activity.class);
+        startActivity(intent);
+        finish();
+        overridePendingTransition(R.anim.pre_in_anim,R.anim.pre_out_anim);
+    }
+
+    @Override
+    protected void showNextPage() {
+        String contact_number = ed_contact_number.getText().toString().trim();
+
+        if(!TextUtils.isEmpty(contact_number)){
+            SpUtils.putString(ContactsValues.PHONE_MUNBER,contact_number,getApplicationContext());
+            Intent intent = new Intent(Setup3Activity.this, Setup4Activity.class);
+            startActivity(intent);
+            finish();
+            overridePendingTransition(R.anim.next_in_anim,R.anim.next_out_anim);
+        }else {
+            ToastUtils.show(getApplicationContext(),"请输入联系人");
+        }
+    }
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -164,6 +165,48 @@ public class SplashActivity extends Activity {
 
 
         initAnimation();
+        initDB();
+    }
+
+    /**
+     * 在进入页面初始化数据库
+     */
+    private void initDB() {
+        initaddress("address.db");
+    }
+
+    private void initaddress(String dbName) {
+        File filesDir = getFilesDir();
+        File file = new File(filesDir, dbName);
+        FileOutputStream fileOutputStream=null;
+        InputStream open= null;
+        if(file.exists()){
+            return;
+
+        }
+        try {
+            open =  getAssets().open(dbName);
+            fileOutputStream = new FileOutputStream(file);
+            byte[] buff = new byte[1024];
+            int len = -1;
+            while((len = open.read(buff))!=-1){
+                fileOutputStream.write(buff,0,len);
+            }
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if(open!=null&&fileOutputStream!=null){
+                try {
+                    open.close();
+                    fileOutputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }
 
     }
 
