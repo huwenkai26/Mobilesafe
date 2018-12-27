@@ -20,8 +20,6 @@
 
 > 为什么要安装svn服务器?
 
-	方便学生从老师的电脑随时checkout代码,也方便学生更有效得管理自己的代码
-
 - 安装VisualSVN Server
 - VisualSVN Server的使用
 
